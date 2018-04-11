@@ -1,0 +1,6 @@
+name: Agent search
+type: module
+description: "Travel agent search module"
+package: Other
+core: 8.x
+dependencies:

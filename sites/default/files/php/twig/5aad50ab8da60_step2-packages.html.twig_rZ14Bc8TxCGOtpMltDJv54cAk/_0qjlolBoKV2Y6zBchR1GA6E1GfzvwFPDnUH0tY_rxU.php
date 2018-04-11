@@ -1,0 +1,351 @@
+<?php
+
+/* themes/tripogater/partials/questionnaire/step2-packages.html.twig */
+class __TwigTemplate_c6a707217db5797b72f662ee4078ad7a2969098440ef16b31dd076a93eee6ec3 extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->parent = false;
+
+        $this->blocks = array(
+        );
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        $tags = array();
+        $filters = array();
+        $functions = array();
+
+        try {
+            $this->env->getExtension('Twig_Extension_Sandbox')->checkSecurity(
+                array(),
+                array(),
+                array()
+            );
+        } catch (Twig_Sandbox_SecurityError $e) {
+            $e->setSourceContext($this->getSourceContext());
+
+            if ($e instanceof Twig_Sandbox_SecurityNotAllowedTagError && isset($tags[$e->getTagName()])) {
+                $e->setTemplateLine($tags[$e->getTagName()]);
+            } elseif ($e instanceof Twig_Sandbox_SecurityNotAllowedFilterError && isset($filters[$e->getFilterName()])) {
+                $e->setTemplateLine($filters[$e->getFilterName()]);
+            } elseif ($e instanceof Twig_Sandbox_SecurityNotAllowedFunctionError && isset($functions[$e->getFunctionName()])) {
+                $e->setTemplateLine($functions[$e->getFunctionName()]);
+            }
+
+            throw $e;
+        }
+
+        // line 282
+        echo "
+
+  <div ng-show=\"quote == 'packages'\" class=\"step-2_packages\">
+
+      <div ng-repeat=\"package in packages track by \$index\" class=\"single-package\">
+          <button class=\"delete-package\" ng-click=\"deletePackage(\$index)\">Delete</button>
+          <div class=\"clr\"></div>
+
+          <div class=\"cbc-inliner row\">
+            <div class=\"form-group col-md-3\">
+              <label for=\"flights-from\" class=\"col-form-label\">From</label>
+              <div>
+                <input ng-model=\"package.packages_from.value\" list=\"airportlistFrom\" ng-change=\"airports(package.packages_from.value)\" class=\"form-control\" type=\"text\" value=\"\" id=\"flights-from\">
+                <datalist ng-model=\"selected\" id=\"airportlistFrom\">
+                    <option ng-repeat=\"result in airportsResults\" value=\"{{result['title']}}\"></option>
+                </datalist>
+              </div>
+            </div><!--/form-group-->
+            <div class=\"form-group col-md-3\">
+              <label for=\"flights-to\" class=\"col-form-label\">To</label>
+              <div>
+                <input ng-model=\"package.packages_to.value\" list=\"airportlistTo\" ng-change=\"airports(package.packages_to.value)\" class=\"form-control\" type=\"text\" value=\"\" id=\"flights-to\">
+               <datalist ng-model=\"selected\" id=\"airportlistTo\">
+                    <option ng-repeat=\"result in airportsResults\" value=\"{{result['title']}}\"></option>
+                </datalist>
+              </div>
+            </div><!--/form-group-->
+            <div class=\"form-group col-md-2\">
+              <label ng-model=\"package.packages_depart.value\" for=\"flights-arrival\" class=\"col-form-label\">Depart</label>
+              <div>
+                <md-datepicker ng-model=\"package.packages_depart.value\" md-placeholder=\"Enter date\" md-open-on-focus></md-datepicker>
+              </div>
+            </div><!--/form-group-->
+            <!-- <div class=\"form-group col-md-2\">
+              <label for=\"flights-duration\" class=\"col-form-label\">Duration of Trip</label>
+              <div>
+                <input ng-model=\"package.packages_duration_of_trip.value\" class=\"form-control\" type=\"text\" value=\"\" id=\"flights-duration\">
+              </div>
+            </div> -->
+            <div class=\"form-group col-md-2\">
+              <label for=\"flights-arrival\" class=\"col-form-label\">Arrival</label>
+              <div>
+                <md-datepicker ng-model=\"package.packages_arrival.value\" md-placeholder=\"Enter date\" md-open-on-focus></md-datepicker>
+              </div>
+            </div><!--/form-group-->
+
+            <div class=\"form-group col-md-2\">
+              <label for=\"flights-passengers\" class=\"col-form-label\">Passengers</label>
+              <div>
+                <input ng-click=\"showCabin(package.cabins, 0)\" ng-model=\"package.cabins.values[0].passenger_count.value\" class=\"form-control\" type=\"text\" value=\"\" id=\"flights-passengers-packages\">
+
+                <div ng-if=\"package.cabins.values[0].passenger_show\" class=\"custom-modal\">
+                  <p class=\"pass-label\">Adults</p>
+                  <div class=\"input-group\">
+                    <span class=\"input-group-btn\">
+                        <button type=\"button\" ng-click=\"passengers_action(package.cabins.values[0].passenger_adult,'-',[package.cabins.values[0].passenger_count])\" class=\"btn btn-danger btn-number\" data-type=\"minus\" data-field=\"quant[2]\">
+                          <span class=\"glyphicon glyphicon-minus\"></span>
+                        </button>
+                    </span>
+                    <input type=\"text\" name=\"quant[2]\" ng-model=\"package.cabins.values[0].passenger_adult.value\" class=\"form-control input-number\" value=\"1\" min=\"1\" max=\"100\">
+                    <span class=\"input-group-btn\">
+                        <button type=\"button\" ng-click=\"passengers_action(package.cabins.values[0].passenger_adult,'+',[package.cabins.values[0].passenger_count])\" class=\"btn btn-success btn-number\" data-type=\"plus\" data-field=\"quant[2]\">
+                            <span class=\"glyphicon glyphicon-plus\"></span>
+                        </button>
+                    </span>
+                  </div>
+                  <p class=\"pass-label\">Children</p>
+                  <div class=\"age-explanation\">
+                    <p class=\"hidden-explanation\">A child 12 years and over is considered an adult, less than 12  and up to 2 is considered a child , under 2 is an infant.</p>
+                  </div>
+                  <div class=\"input-group\">
+                    <span class=\"input-group-btn\">
+                        <button type=\"button\" ng-click=\"passengers_action(package.cabins.values[0].passenger_children,'-',[package.cabins.values[0].passenger_count])\" class=\"btn btn-default btn-number\" data-type=\"minus\" data-field=\"quant[1]\">
+                            <span class=\"glyphicon glyphicon-minus\"></span>
+                        </button>
+                    </span>
+                    <input type=\"text\" name=\"quant[1]\" ng-model=\"package.cabins.values[0].passenger_children.value\" class=\"form-control input-number\" value=\"1\" min=\"1\" max=\"10\">
+                    <span class=\"input-group-btn\">
+                        <button type=\"button\" ng-click=\"passengers_action(package.cabins.values[0].passenger_children,'+',[package.cabins.values[0].passenger_count])\" class=\"btn btn-default btn-number\" data-type=\"plus\" data-field=\"quant[1]\">
+                            <span class=\"glyphicon glyphicon-plus\"></span>
+                        </button>
+                    </span>
+                  </div>
+                  <div ng-repeat=\"child in package.cabins.values[0].passenger_children.age track by \$index\" class=\"age-of-child\">
+                    <label for=\"age-of-child\" class=\"col-form-label\">Age of child <span>{{\$index + 1}}</span></label>
+                    <select ng-model=\"package.cabins.values[0].passenger_children.age[\$index]\">
+                      <option value=\"1\">1</option>
+                      <option value=\"2\">2</option>
+                      <option value=\"3\">3</option>
+                      <option value=\"4\">4</option>
+                      <option value=\"5\">5</option>
+                      <option value=\"6\">6</option>
+                      <option value=\"7\">7</option>
+                      <option value=\"8\">8</option>
+                      <option value=\"9\">9</option>
+                      <option value=\"10\">10</option>
+                      <option value=\"11\">11</option>
+                      <option value=\"12\">12</option>
+                      <option value=\"13\">13</option>
+                      <option value=\"13\">14</option>
+                      <option value=\"13\">15</option>
+                    </select>
+                  </div><!--/age-of-child-->
+                </div>
+
+              </div>
+            </div><!--/form-group-->
+
+          </div><!--/cbc-inliner-->
+
+          <div class=\"cbc-inliner row\">
+
+            <div class=\"col-md-6\">
+
+              <button type=\"button\" class=\"btn btn-primary add-accommodation-button\" data-toggle=\"modal\" data-target=\"#exampleModal-{{\$index}}\">
+                Add Accommodation
+              </button>
+              <div class=\"package-accomm-saved\">
+                <div class=\"package-accomm-saved-unit\">Accommodation Type: {{(package.packages_accomm_type.value == 'other' && (package.packages_accomm_type.other_value != null && package.packages_accomm_type.other_value != ''))
+                ? 'Other: ' + package.packages_accomm_type.other_value : (package.packages_accomm_type.value == 'other')
+                ? '' : package.packages_accomm_type.value}}</div>
+                <div class=\"package-accomm-saved-unit\">Room Information: {{(package.packages_accomm_room_info.value == 'other' && (package.packages_accomm_room_info.other_value != null && package.packages_accomm_room_info.other_value != ''))
+                ? 'Other: ' + package.packages_accomm_room_info.other_value : (package.packages_accomm_room_info.value == 'other')
+                ? '' : package.packages_accomm_room_info.value}}</div>
+                <div class=\"package-accomm-saved-unit\">
+                  Other Information:
+                  <div ng-repeat=\"other in package.packages_accomm_other_info.value\">
+                    {{(other == 'other' && (package.packages_accomm_other_info.other_value != null && package.packages_accomm_other_info.other_value != ''))
+                ? 'Other: ' + package.packages_accomm_other_info.other_value : (other == 'other')
+                ? '' : other}}
+                  </div>
+                </div>
+              </div>
+              <div class=\"modal fade\" id=\"exampleModal-{{\$index}}\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">
+                <div class=\"modal-dialog\" role=\"document\">
+                  <div class=\"modal-content\">
+                    <div class=\"modal-header\">
+                      <div class=\"group-title\">Add Accommodation (Optional)</div>
+                      <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
+                        <span aria-hidden=\"true\">&times;</span>
+                      </button>
+                    </div>
+                    <div class=\"modal-body\">
+                      <div class=\"row packages-additonal\">
+
+                        <div class=\"col-md-12 packages-group\">
+
+                          <div class=\"col-md-5\">
+
+                            <div class=\"form-group row\">
+                              <label class=\"col-md-12 col-form-label\" for=\"accomm-type-packages\">Accommodation Type</label>
+                              <div id=\"accomm-type-packages\" class=\"col-md-12\">
+                                <div class=\"radio\">
+                                  <label><input type=\"radio\" ng-model=\"package.packages_accomm_type.value\" value=\"Hotel\">Hotel</label>
+                                </div>
+                                <div class=\"radio\">
+                                  <label><input type=\"radio\" ng-model=\"package.packages_accomm_type.value\" value=\"Apartment\">Apartment</label>
+                                </div>
+                                <div class=\"radio\">
+                                  <label><input type=\"radio\" ng-model=\"package.packages_accomm_type.value\" value=\"Holiday House\">Holiday House</label>
+                                </div>
+                                <div class=\"radio\">
+                                  <label><input type=\"radio\" ng-model=\"package.packages_accomm_type.value\" value=\"Hostel / Backpackers\">Hostel/Backpackers</label>
+                                </div>
+                                <div class=\"other radio col-md-6\">
+                                 <label><input ng-model=\"package.packages_accomm_type.value\" type=\"radio\" value=\"other\" name=\"accomm-type{{index}}\">Other</label>
+                                 <input ng-model=\"package.packages_accomm_type.other_value\" class=\"form-control\" type=\"text\" value=\"\" id=\"packages-accomm-type-other\">
+                               </div><!--other-->
+                              </div><!--/accomm-type-->
+                            </div><!--/form-group-->
+
+                            <div class=\"form-group row\">
+                              <label class=\"col-md-12 col-form-label\" for=\"room-info\">Room Information</label>
+                              <div id=\"room-info-packages\" class=\"col-md-12\">
+                                <div class=\"radio\">
+                                  <label><input type=\"radio\" ng-model=\"package.packages_accomm_room_info.value\" value=\"1 bedroom\">1 bedroom</label>
+                                </div>
+                                <div class=\"radio\">
+                                  <label><input type=\"radio\" ng-model=\"package.packages_accomm_room_info.value\" value=\"2 bedroom\">2 bedroom</label>
+                                </div>
+                                <div class=\"radio\">
+                                  <label><input type=\"radio\" ng-model=\"package.packages_accomm_room_info.value\" value=\"3 bedroom\">3 bedroom</label>
+                                </div>
+                                <div class=\"other radio col-md-6\">
+                                  <label><input ng-model=\"package.packages_accomm_room_info.value\" type=\"radio\" value=\"other\">Other</label>
+                                  <input ng-model=\"package.packages_accomm_room_info.other_value\" class=\"form-control\" type=\"text\" value=\"\" id=\"packages-room-info-other\">
+                                </div><!--other-->
+                              </div><!--/room-info-->
+                            </div><!--/form-group-->
+
+                          </div><!--/col-md-6-->
+
+                          <div class=\"col-md-5 col-md-offset-2\">
+
+                            <div class=\"form-group row\">
+                              <label class=\"col-md-12 col-form-label\" for=\"accomm-other-information-packages\">Other Information</label>
+                              <div id=\"accomm-other-information-packages\" class=\"col-md-12\">
+                                <div class=\"checkbox\">
+                                  <label><input ng-model=\"package.packages_accomm_other_info.value.balcony\" ng-true-value=\"'Balcony'\" type=\"checkbox\">Balcony</label>
+                                </div>
+                                <div class=\"checkbox\">
+                                  <label><input ng-model=\"package.packages_accomm_other_info.value.smoking\" ng-true-value=\"'Smoking'\" type=\"checkbox\">Smoking</label>
+                                </div>
+                                <div class=\"checkbox\">
+                                  <label><input ng-model=\"package.packages_accomm_other_info.value.airconditioning\" ng-true-value=\"'Air Conditioning'\" type=\"checkbox\">Air Conditioning</label>
+                                </div>
+                                <div class=\"checkbox\">
+                                  <label><input ng-model=\"package.packages_accomm_other_info.value.breakfast\" ng-true-value=\"'Breakfast'\" type=\"checkbox\">Breakfast</label>
+                                </div>
+                                <div class=\"checkbox\">
+                                  <label><input ng-model=\"package.packages_accomm_other_info.value.free_parking\" ng-true-value=\"'Free Parking'\" type=\"checkbox\">Free Parking</label>
+                                </div>
+                                <div class=\"checkbox\">
+                                  <label><input ng-model=\"package.packages_accomm_other_info.value.wifi\" ng-true-value=\"'Wifi'\" type=\"checkbox\">Wifi</label>
+                                </div>
+                                <div class=\"other checkbox col-md-6\">
+                                    <label><input ng-model=\"package.packages_accomm_other_info.value.other\" name=\"accomm-other-info{{index}}\" ng-true-value=\"'other'\" type=\"checkbox\">Other</label>
+                                    <input ng-model=\"package.packages_accomm_other_info.other_value\" class=\"form-control\" type=\"text\" name=\"packages_accomm-other-info{{index}}\" value=\"\" id=\"packages_accomm-other-information-other\">
+                                </div><!--other-->
+                              </div><!--/accomm-other-information-packages-->
+                            </div><!--/form-group-->
+
+                          </div><!--/col-md-6-->
+
+                        </div><!--/col-md-12-->
+
+                      </div><!--/row-->
+                    </div><!--/modal-body-->
+                    <div class=\"modal-footer\">
+                      <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div><!--/modal-wrapper-->
+
+            </div><!--/col-md-6-->
+
+            <div class=\"col-md-6\">
+
+              <div class=\"form-group\">
+                <label class=\"col-form-label\" for=\"packages_insurance\">Add Car Hire</label>
+                <div class=\"checkbox\">
+                  <label><input ng-model=\"package.packages_car_hire_add.value.yes\" type=\"checkbox\" value=\"yes\" name=\"packages-insurance\">Yes</label>
+                </div>
+              </div><!--/form-group-->
+
+            </div><!--/col-md-6-->
+
+          </div><!--/cbc-inliner row-->
+
+      </div><!--/single-package-->
+      <!-- </div>
+      </div> -->
+
+      <button class=\"add-package\" ng-click=\"addPackage()\">Add next destination</button>
+
+      <div class=\"form-group row packages_visa-form-grp\">
+        <label class=\"col-md-12 col-form-label\" for=\"packages_visa\">Do you need visa?<span>*</span> </label>
+        <div id=\"packages_visa\" class=\"col-md-12\">
+          <label class=\"radio-inline\"><input type=\"radio\" ng-model=\"packages[0].packages_visa.value\" value=\"yes\">Yes</label>
+          <label class=\"radio-inline\"><input type=\"radio\" ng-model=\"packages[0].packages_visa.value\" value=\"no\">No</label>
+          <label class=\"radio-inline\"><input type=\"radio\" ng-model=\"packages[0].packages_visa.value\" value=\"I am not sure\">I am not sure</label>
+        </div><!--/visa-->
+      </div><!--/form-group-->
+
+      <div class=\"form-group row packages_insurance-form-grp\">
+        <label class=\"col-form-label\" for=\"packages_insurance\">Add Insurance
+          <div class=\"additional-info\">
+            <i class=\"fa fa-question\"></i>
+            <div class=\"additional-text\">We highly recommend adding insurance to all your trips.</div>
+          </div><!--/additional-info-->
+        </label>
+        <div id=\"packages_insurance\">
+          <div class=\"checkbox\">
+            <label><input ng-model=\"packages[0].packages_insurance.value.yes\" type=\"checkbox\" value=\"yes\" name=\"packages-insurance\">Yes</label>
+          </div>
+        </div><!--/packages_insurance-->
+      </div><!--/form-group-->
+
+  </div>
+
+";
+        echo "
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "themes/tripogater/partials/questionnaire/step2-packages.html.twig";
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  43 => 282,);
+    }
+
+    /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
+    public function getSource()
+    {
+        @trigger_error('The '.__METHOD__.' method is deprecated since version 1.27 and will be removed in 2.0. Use getSourceContext() instead.', E_USER_DEPRECATED);
+
+        return $this->getSourceContext()->getCode();
+    }
+
+    public function getSourceContext()
+    {
+        return new Twig_Source("", "themes/tripogater/partials/questionnaire/step2-packages.html.twig", "/var/www/html/dev/themes/tripogater/partials/questionnaire/step2-packages.html.twig");
+    }
+}

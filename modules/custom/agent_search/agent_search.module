@@ -1,0 +1,146 @@
+<?php
+/**
+ *
+ * @file
+ * Helper module for Agent search
+ * @version PHP 7
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function agent_search_theme($existing, $type, $theme, $path) {
+  return [
+    'submitted_questionnaires' => [
+      'render element' => 'custom_page',
+      'path' => $path . '/templates',
+      'template' => 'submitted-questionnaires',
+      'variables' => [
+        'questionnaires' => []
+      ],
+    ],
+    'mail' => [
+      'path' => $path . '/templates',
+      'template' => 'mail',
+      'variables' => [
+        'content' => [],
+        'admin' => false,
+        'link' => ''
+      ],
+    ],
+    'pdf' => [
+      'path' => $path . '/templates',
+      'template' => 'pdf',
+      'variables' => [
+        'content' => []
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_mail().
+ */
+function agent_search_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'send_questionnaire':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['message'];
+      break;
+  }
+}
+
+function hashQuery($hash) {
+    $query = \Drupal::entityQuery('node');
+    $query->condition('field_hash_id', $hash);
+
+    return array_values($query->execute());
+}
+
+function agent_search_mail_alter(&$message) {
+  switch ($message['key']) {
+    case 'send_questionnaire':
+      $message['headers']['Content-Type'] = 'text/html; format=flowed; delsp=yes';
+      break;
+  }
+}
+
+function sendRequest($questionnaire, $travelAgents, $mailMe=false) {
+            $success = 0;
+            $fail = 0;
+
+            $jsonContent = $questionnaire->get('field_json_data')->value;
+            $content = json_decode($jsonContent);
+            $hash = $questionnaire->get('field_hash_id')->value;
+
+            $mailManager = \Drupal::service('plugin.manager.mail');
+            $siteEmail = \Drupal::config('system.site')->get('mail');
+
+            $theme_body = array(
+              '#theme' => 'mail',
+              '#content' => $content,
+              '#link' => $hash,
+              '#admin' => false
+            );
+            
+            $module = 'agent_search';
+            $key = 'send_questionnaire';
+            
+            $params['subject'] = $questionnaire->getTitle();
+            $langcode = \Drupal::currentUser()->getPreferredLangcode();
+            $send = true;
+
+            foreach ($travelAgents as $travelAgent) {
+
+                $to = $travelAgent->getEmail();
+
+                $theme_body = array(
+                  '#theme' => 'mail',
+                  '#content' => $content,
+                  '#link' => $hash,
+                  '#admin' => false
+                );
+
+                $mailHtml = \Drupal::service('renderer')->render($theme_body);
+                $params['message'] = $mailHtml;
+                
+                $result = $mailManager->mail($module, $key, $to, $langcode, $params, $siteEmail, $send);
+
+                if ($result['result'] == true) {
+                    $success++;
+                }
+                else {
+                    $fail++;
+                }
+            }
+
+            if (count($travelAgents) > 0) {
+                $questionnaire->set("field_travel_agents", $travelAgents);
+                $questionnaire->field_sent[] = date("Y-m-d\Th:i:s", time());
+                
+                $questionnaire->save();
+            }
+
+            if ($mailMe) {
+              $mailManager->mail($module, $key, $content->step_1->email->value, $langcode, $params, $siteEmail, $send);
+            }
+
+            $admin_user = \Drupal\user\Entity\User::load(1);
+            
+            $theme_body = array(
+              '#theme' => 'mail',
+              '#content' => $content,
+              '#link' => $hash,
+              '#admin' => true
+            );
+            $mailHtml = \Drupal::service('renderer')->render($theme_body);
+
+            \Drupal::logger('my_module')->notice($mailHtml);
+            
+            $params['message'] = $mailHtml;           
+            $mailManager->mail($module, $key, $admin_user->getEmail(), $langcode, $params, $siteEmail, $send);
+            
+
+            return array('success' => $success, 'fail' => $fail);
+}

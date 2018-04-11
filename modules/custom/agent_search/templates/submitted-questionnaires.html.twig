@@ -1,0 +1,28 @@
+ {% if (questionnaires|length > 0) %}
+<div class="submitted_questionnaires-table">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>trip name</th>
+      <th>date of request</th>
+      <th>Download pdf</th>
+    </tr>
+      {% for questionnaire in questionnaires %}
+        <tr>
+          <td>{{questionnaire.name}}</td>
+          <td>{{questionnaire.trip_name}}</td>
+          <td>{{questionnaire.date}}</td>
+          <td><a href="/questionnaire-pdf/{{questionnaire.hash}}">Download Questionnaire PDF</a></td>
+        </tr>
+      {% endfor %}
+  </table>
+  <div class="questionnaires-length">
+    <p> There is total of {{questionnaires|length}} questionnaires submitted to you.</p>
+  </div>
+  <a class="dark-blue-button" href="/user/">Back to account</a>
+</div>
+ {% else %}
+<div class="submitted_questionnaires-no-reuslts">
+  There are no results.
+</div>
+{% endif %}

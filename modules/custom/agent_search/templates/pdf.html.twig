@@ -1,0 +1,11 @@
+<div class="pdf-img-wrap"><img src="http://dev.tripogater.com.au/themes/tripogater/images/pdf/tq-logo.png" /></div>
+{% if content.step_2.quote == "flights" %}
+    <h2>Flights</h2>
+    <div><strong>Return trip From: </strong> {{ content.step_2.values.flights_from.value }}</div>
+    {% for city in content.step_2.values.cities.values %}
+        <h3>City {{ loop.index }}</h3>
+        <div><strong>Multi-city From: </strong>{{ city.cities_values_from.value }}</div>
+    {% endfor %}
+{% elseif content.step_2.quote == "accommodation" %}
+    <h2>Accommodation</h2>
+{% endif %}

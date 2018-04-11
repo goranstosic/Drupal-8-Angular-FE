@@ -1,0 +1,253 @@
+<?php
+
+/* themes/tripogater/partials/questionnaire/step2-accommodation.html.twig */
+class __TwigTemplate_b4f35e1b47ff9d97444cb5b3e256fc77ccc2746130aeda1158b857369bdbf621 extends Twig_Template
+{
+    public function __construct(Twig_Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->parent = false;
+
+        $this->blocks = array(
+        );
+    }
+
+    protected function doDisplay(array $context, array $blocks = array())
+    {
+        $tags = array();
+        $filters = array();
+        $functions = array();
+
+        try {
+            $this->env->getExtension('Twig_Extension_Sandbox')->checkSecurity(
+                array(),
+                array(),
+                array()
+            );
+        } catch (Twig_Sandbox_SecurityError $e) {
+            $e->setSourceContext($this->getSourceContext());
+
+            if ($e instanceof Twig_Sandbox_SecurityNotAllowedTagError && isset($tags[$e->getTagName()])) {
+                $e->setTemplateLine($tags[$e->getTagName()]);
+            } elseif ($e instanceof Twig_Sandbox_SecurityNotAllowedFilterError && isset($filters[$e->getFilterName()])) {
+                $e->setTemplateLine($filters[$e->getFilterName()]);
+            } elseif ($e instanceof Twig_Sandbox_SecurityNotAllowedFunctionError && isset($functions[$e->getFunctionName()])) {
+                $e->setTemplateLine($functions[$e->getFunctionName()]);
+            }
+
+            throw $e;
+        }
+
+        // line 184
+        echo "
+
+  <div ng-show=\"quote == 'accommodation'\" class=\"step-2_accommodation\">
+
+    <div class=\"cbc-inliner row\">
+
+      <div class=\"form-group col-md-5\">
+        <label for=\"accomm-location\" class=\"col-form-label\">Desired City / Location for Accomodation<span>*</span></label>
+        <div>
+          <input ng-model=\"step2.accommodation.accomm_location.value\" ng-change=\"cities(step2.accommodation.accomm_location.value)\" list=\"citieslistFrom\" class=\"form-control\" type=\"text\" value=\"\" id=\"accomm-location\">
+            <datalist ng-model=\"selected\" id=\"citieslistFrom\">
+              <option ng-repeat=\"result in citiesResults\" value=\"{{result['title']}}\"></option>
+            </datalist>
+        </div>
+      </div><!--/form-group-->
+      <div class=\"form-group col-md-3\">
+        <label for=\"accomm_amountofpeople\" class=\"col-form-label\">Ammount of People<span>*</span></label>
+        <div>
+          <input class=\"form-control\" ng-click=\"showCabin(step2.accommodation.cabins, 0)\" ng-model=\"step2.accommodation.cabins.values[0].passenger_count.value\" type=\"text\" value=\"\" id=\"accomm_amountofpeople\">
+
+          <div ng-if=\"step2.accommodation.cabins.values[0].passenger_show\" class=\"custom-modal\">
+                <p class=\"pass-label\">Adults</p>
+                <div class=\"input-group\">
+                  <span class=\"input-group-btn\">
+                      <button type=\"button\" ng-click=\"passengers_action(step2.accommodation.cabins.values[0].passenger_adult,'-',[step2.accommodation.cabins.values[0].passenger_count])\" class=\"btn btn-danger btn-number\" data-type=\"minus\" data-field=\"quant[2]\">
+                        <span class=\"glyphicon glyphicon-minus\"></span>
+                      </button>
+                  </span>
+                  <input type=\"text\" name=\"quant[2]\" ng-model=\"step2.accommodation.cabins.values[0].passenger_adult.value\" class=\"form-control input-number\" value=\"1\" min=\"1\" max=\"100\">
+                  <span class=\"input-group-btn\">
+                      <button type=\"button\" ng-click=\"passengers_action(step2.accommodation.cabins.values[0].passenger_adult,'+',[step2.accommodation.cabins.values[0].passenger_count])\" class=\"btn btn-success btn-number\" data-type=\"plus\" data-field=\"quant[2]\">
+                          <span class=\"glyphicon glyphicon-plus\"></span>
+                      </button> 
+                  </span>
+                </div>
+                <p class=\"pass-label\">Children</p>
+                <div class=\"age-explanation\">
+                  <p class=\"hidden-explanation\">A child 12 years and over is considered an adult, less than 12  and up to 2 is considered a child , under 2 is an infant.</p>
+                </div>
+                <div class=\"input-group\">
+                  <span class=\"input-group-btn\">
+                      <button type=\"button\" ng-click=\"passengers_action(step2.accommodation.cabins.values[0].passenger_children,'-',[step2.accommodation.cabins.values[0].passenger_count])\" class=\"btn btn-default btn-number\" data-type=\"minus\" data-field=\"quant[1]\">
+                          <span class=\"glyphicon glyphicon-minus\"></span>
+                      </button>
+                  </span>
+                  <input type=\"text\" name=\"quant[1]\" ng-model=\"step2.accommodation.cabins.values[0].passenger_children.value\" class=\"form-control input-number\" value=\"1\" min=\"1\" max=\"10\">
+                  <span class=\"input-group-btn\">
+                      <button type=\"button\" ng-click=\"passengers_action(step2.accommodation.cabins.values[0].passenger_children,'+',[step2.accommodation.cabins.values[0].passenger_count])\" class=\"btn btn-default btn-number\" data-type=\"plus\" data-field=\"quant[1]\">
+                          <span class=\"glyphicon glyphicon-plus\"></span>
+                      </button>
+                  </span>
+                </div>
+                <div ng-repeat=\"child in step2.accommodation.cabins.values[0].passenger_children.age track by \$index\" class=\"age-of-child\">
+                  <label for=\"age-of-child\" class=\"col-form-label\">Age of child <span>{{\$index + 1}}</span></label>
+                  <select ng-model=\"step2.accommodation.cabins.values[0].passenger_children.age[\$index]\">
+                    <option value=\"1\">1</option>
+                    <option value=\"2\">2</option>
+                    <option value=\"3\">3</option>
+                    <option value=\"4\">4</option>
+                    <option value=\"5\">5</option>
+                    <option value=\"6\">6</option>
+                    <option value=\"7\">7</option>
+                    <option value=\"8\">8</option>
+                    <option value=\"9\">9</option>
+                    <option value=\"10\">10</option>
+                    <option value=\"11\">11</option>
+                    <option value=\"12\">12</option>
+                    <option value=\"13\">13</option>
+                    <option value=\"13\">14</option>
+                    <option value=\"13\">15</option>
+                  </select>
+                </div><!--/age-of-child-->
+              </div>
+        </div>
+      </div><!--/form-group-->
+      <div class=\"form-group col-md-2\">
+        <label for=\"accomm-check-in\" class=\"col-form-label\">Check In<span>*</span></label>
+        <div>
+          <md-datepicker ng-model=\"step2.accommodation.accomm_check_in.value\" md-placeholder=\"Enter date\" md-open-on-focus></md-datepicker>
+        </div>
+      </div><!--/form-group-->
+      <!-- <div class=\"form-group col-md-2\">
+        <label for=\"flights-arrival\" class=\"col-form-label\">Duration of Stay<span>*</span></label>
+        <div>
+          <input ng-model=\"step2.accommodation.accomm_duration.value\" class=\"form-control\" type=\"text\" value=\"\" id=\"accomm-location\">
+        </div>
+      </div> -->
+      <div class=\"form-group col-md-2\">
+        <label for=\"accomm-check-out\" class=\"col-form-label\">Check Out<span>*</span></label>
+        <div>
+          <md-datepicker ng-model=\"step2.accommodation.accomm_check_out.value\" md-placeholder=\"Enter date\" md-open-on-focus></md-datepicker>
+        </div>
+      </div><!--/form-group-->
+
+    </div><!--/cbc-inliner-->
+
+    <div class=\"row\">
+
+      <div class=\"col-md-5\">
+
+        <div class=\"form-group row\">
+          <label class=\"col-md-5 col-form-label\" for=\"accomm-type\">Accommodation Type<span>*</span></label>
+          <div id=\"accomm-type\" class=\"col-md-7\">
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_type.value.hotel\" type=\"checkbox\" value=\"hotel\" name=\"accomm-type\">Hotel</label>
+            </div>
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_type.value.apartment\" type=\"checkbox\" value=\"apartment\" name=\"accomm-type\">Apartment</label>
+            </div>
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_type.value.holiday_house\" type=\"checkbox\" value=\"holiday-house\" name=\"accomm-type\">Holiday House</label>
+            </div>
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_type.value.hostel_backpackers\" type=\"checkbox\" value=\"hostel-backpackers\" name=\"accomm-type\">Hostel/Backpackers</label>
+            </div>
+            <div class=\"other checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_type.value.other\" type=\"checkbox\" value=\"other\" name=\"accomm-type\">Other</label>
+              <input ng-model=\"step2.accommodation.accomm_type.other_value\" class=\"form-control\" type=\"text\" value=\"\" id=\"accomm-type-other\">
+            </div><!--other-->
+          </div><!--/accomm-type-->
+        </div><!--/form-group-->
+
+        <div class=\"form-group row\">
+          <label class=\"col-md-5 col-form-label\" for=\"room-info\">Room Infromation</label>
+          <div id=\"room-info\" class=\"col-md-7\">
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_room_info.value.one_bedroom\" name=\"accomm-other-info\" value=\"1 bedroom\" type=\"checkbox\">1 bedroom</label>
+            </div>
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_room_info.value.two_bedroom\" name=\"accomm-other-info\" value=\"2 bedroom\" type=\"checkbox\">2 bedroom</label>
+            </div>
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_room_info.value.three_bedroom\" name=\"accomm-other-info\" value=\"3 bedroom\" type=\"checkbox\">3 bedroom</label>
+            </div>
+            <div class=\"other checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_room_info.value.other\" type=\"checkbox\" value=\"other\" name=\"room-info\">Other</label>
+              <input ng-model=\"step2.accommodation.accomm_room_info.other_value\" class=\"form-control\" type=\"text\" value=\"\" id=\"room-info-other\">
+            </div><!--other-->
+          </div><!--/room-info-->
+        </div><!--/form-group-->
+
+      </div><!--/col-md-5-->
+
+      <div class=\"col-md-5 col-md-offset-2\">
+
+        <div class=\"form-group row\">
+          <label class=\"col-md-5 col-form-label\" for=\"accomm-other-information\">Other Information</label>
+          <div id=\"accomm-other-information\" class=\"col-md-7\">
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_other_info.value.balcony\" name=\"accomm-other-info\" value=\"balcony\" type=\"checkbox\">Balcony</label>
+            </div>
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_other_info.value.smoking\" name=\"accomm-other-info\" value=\"smoking\" type=\"checkbox\">Smoking</label>
+            </div>
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_other_info.value.airconditioning\" name=\"accomm-other-info\" value=\"air-conditioning\" type=\"checkbox\">Air Conditioning</label>
+            </div>
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_other_info.value.breakfast\" name=\"accomm-other-info\" value=\"breakfast\" type=\"checkbox\">Breakfast</label>
+            </div>
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_other_info.value.ocean_view\" name=\"accomm-other-info\" value=\"Ocean/Water View\" type=\"checkbox\">Ocean/Water View</label>
+            </div>
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_other_info.value.free_parking\" name=\"accomm-other-info\" value=\"free-parking\" type=\"checkbox\">Free Parking</label>
+            </div>
+            <div class=\"checkbox\">
+              <label><input ng-model=\"step2.accommodation.accomm_other_info.value.wifi\" name=\"accomm-other-info\" value=\"wifi\" type=\"checkbox\">Wifi</label>
+            </div>
+            <div class=\"other checkbox\">
+                <label><input ng-model=\"step2.accommodation.accomm_other_info.value.other\" name=\"accomm-other-info\" value=\"other\" type=\"checkbox\">Other</label>
+                <input ng-model=\"step2.accommodation.accomm_other_info.other_value\" class=\"form-control\" type=\"text\" name=\"accomm-other-info\" value=\"\" id=\"accomm-other-information-other\">
+            </div><!--other-->
+          </div><!--/accomm-other-information-->
+        </div><!--/form-group-->
+
+
+      </div><!--/col-md-5-->
+
+    </div><!--/row-->
+
+  </div><!--/accommodation-->
+
+";
+        echo "
+";
+    }
+
+    public function getTemplateName()
+    {
+        return "themes/tripogater/partials/questionnaire/step2-accommodation.html.twig";
+    }
+
+    public function getDebugInfo()
+    {
+        return array (  43 => 184,);
+    }
+
+    /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
+    public function getSource()
+    {
+        @trigger_error('The '.__METHOD__.' method is deprecated since version 1.27 and will be removed in 2.0. Use getSourceContext() instead.', E_USER_DEPRECATED);
+
+        return $this->getSourceContext()->getCode();
+    }
+
+    public function getSourceContext()
+    {
+        return new Twig_Source("", "themes/tripogater/partials/questionnaire/step2-accommodation.html.twig", "/var/www/html/dev/themes/tripogater/partials/questionnaire/step2-accommodation.html.twig");
+    }
+}

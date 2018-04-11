@@ -1,0 +1,22 @@
+
+{% if admin == true %}
+<p>Dear Admin</p>
+<a href="/questionnaire-pdf/{{link}}">{{content.step_1.trip_name.value}}</a>
+{% endif %}
+<p>Dear Travel Agent,</p><p>You have received quote request. Please download PDF using link below to see the details of Trip.</p>
+<p>Here is another Inquiry, See the right steps below:</p>
+<ul><li>Open the Attachment</li><li>Action within 24hours</li><li>Submit it, According to clients preference </li></ul>
+<p>Have a great day and let’s hope the sale is yours.</p>
+<a href="/questionnaire-pdf/{{link}}">Download PDF for {{content.step_1.trip_name.value}}</a>
+<p>Regards,</p>
+<p>Travel Quoter</p>
+<img src="/themes/tripogater/images/logo.png" />
+<p>DISCLAIMER:</p>
+<p>
+The information transmitted is intended only for the person and/or entity to which it is addressed and may contain confidential and/or privileged material.
+Any review, retransmission, dissemination or other use of and/or taking of any action in reliance upon this information by persons or entities other than the intended recipient is strictly prohibited.
+If you received this unintentionally, please contact the sender and delete the material from all computers immediately. Travel Quoter does not warrant that the material contained in this message is free from Computer virus and/or defects.
+Loss or damage incurred in use is not the responsibility of Travel Quoter.
+Travel Quoter respects your privacy and is committed to protecting it.
+To view our Privacy Policy please visit <a href="http://www.travelquoter.com">www.travelquoter.com</a>
+</p>

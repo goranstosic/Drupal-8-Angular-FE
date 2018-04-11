@@ -1,0 +1,18 @@
+csv_importer.name:
+  path: '/import'
+  defaults:
+    _controller: '\Drupal\csv_importer\Controller\ImportController::import'
+  requirements:
+    _permission: 'access content'
+csv_importer.airport:
+  path: '/import/airport'
+  defaults:
+    _controller: '\Drupal\csv_importer\Controller\ImportController::importAirport'
+  requirements:
+    _permission: 'access content'    
+csv_importer.city:
+  path: '/import/city'
+  defaults:
+    _controller: '\Drupal\csv_importer\Controller\ImportController::importCity'
+  requirements:
+    _permission: 'access content'        

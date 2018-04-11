@@ -1,0 +1,19 @@
+{% include directory ~ '/partials/header.html.twig' %}
+{% include directory ~ '/partials/sidebar.html.twig' %}
+
+<div class="main-content basic-page">
+
+  <div class="cbc-wrap">
+    <div class="row">
+      <div class="col-md-6">
+        {{ page.content }}
+      </div>
+      <div class="col-md-6 twitter-feed">
+        <a class="twitter-timeline" href="https://twitter.com/Smartraveller">Tweets by Smartraveller</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+    </div><!--/row-->
+  </div><!--/cbc-wrap-->
+
+</div><!--/main-content-->
+
+{% include directory ~ '/partials/footer.html.twig' %}

@@ -1,0 +1,24 @@
+{% include directory ~ '/partials/header.html.twig' %}
+{% include directory ~ '/partials/sidebar.html.twig' %}
+
+<div class="main-content basic-page">
+
+  <div class="cbc-wrap">
+    <div class="row">
+      <div class="col-md-8">
+        {{ page.content }}
+      </div>
+      <div class="col-md-4 contact-details">
+        <h1>Contact Details</h1>
+        <p>You can also reach us at:</p>
+        <ul>
+          <li><span>Email:</span> <a href="mailto:info@travelquoter.com.au">info@travelquoter.com.au</a></li>
+          <li><span>Phone:</span> <a href="tel:0287290889">02 8729 0889</a></li>
+        </ul>
+      </div>
+    </div><!--/row-->
+  </div><!--/cbc-wrap-->
+
+</div><!--/main-content-->
+
+{% include directory ~ '/partials/footer.html.twig' %}

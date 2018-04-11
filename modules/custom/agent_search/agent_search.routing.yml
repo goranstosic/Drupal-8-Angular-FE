@@ -1,0 +1,72 @@
+agent_search.autocomplete:
+  path: '/search-autocomplete/{query}'
+  defaults:
+    _controller: '\Drupal\agent_search\Controller\SearchController::autocomplete'
+  requirements:
+    _permission: 'access content'
+agent_search.airports:
+  path: '/search-airports/{query}'
+  defaults:
+    _controller: '\Drupal\agent_search\Controller\SearchController::airport'
+  requirements:
+    _permission: 'access content'
+agent_search.cities:
+  path: '/search-cities/{query}'
+  defaults:
+    _controller: '\Drupal\agent_search\Controller\SearchController::city'
+  requirements:
+    _permission: 'access content'           
+agent_search.query:
+  path: '/search-query/{id}/{distance}'
+  defaults:
+    _controller: '\Drupal\agent_search\Controller\SearchController::search'
+  requirements:
+    _permission: 'access content'
+agent_search.questionnaire.accept:
+  path: '/questionnaire-accept'
+  defaults:
+    _controller: '\Drupal\agent_search\Controller\QuestionnaireController::accept'
+  requirements:
+    _permission: 'access content'    
+agent_search.questionnaire.get:
+  path: '/questionnaire-get/{hash}'
+  defaults:
+    _controller: '\Drupal\agent_search\Controller\QuestionnaireController::get'
+  requirements:
+    _permission: 'access content'       
+agent_search.questionnaire.update:
+  path: '/questionnaire-update/{hash}'
+  defaults:
+    _controller: '\Drupal\agent_search\Controller\QuestionnaireController::update'
+  requirements:
+    _permission: 'access content'         
+agent_search.questionnaire.send:
+  path: '/questionnaire-send/{hash}'
+  defaults:
+    _controller: '\Drupal\agent_search\Controller\QuestionnaireController::send'
+  requirements:
+    _permission: 'access content'
+agent_search.questionnaire.resend:
+  path: '/questionnaire-resend/{hash}'
+  defaults:
+    _controller: '\Drupal\agent_search\Controller\QuestionnaireController::resend'
+  requirements:
+    _permission: 'access content'
+agent_search.questionnaire.copy:
+  path: '/questionnaire-copy/{hash}'
+  defaults:
+    _controller: '\Drupal\agent_search\Controller\QuestionnaireController::copy'
+  requirements:
+    _permission: 'access content'            
+agent_search.questionnaire.pdf:
+  path: '/questionnaire-pdf/{hash}'
+  defaults:
+    _controller: '\Drupal\agent_search\Controller\QuestionnaireController::pdf'
+  requirements:
+    _permission: 'access content'     
+agent_search.agent.questionnaire.list:
+  path: '/submitted-questionnaires'
+  defaults:
+    _controller: '\Drupal\agent_search\Controller\QuestionnaireController::submittedQuestionnaires'
+  requirements:
+    _permission: 'access content'       

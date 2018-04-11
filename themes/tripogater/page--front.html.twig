@@ -1,0 +1,139 @@
+{% include directory ~ '/partials/header.html.twig' %}
+{% include directory ~ '/partials/sidebar.html.twig' %}
+
+<!-- Carousel
+================================================== -->
+
+<div class="banner">
+  <div class="banner-overlay"></div>
+  <img src="{{ directory }}/images/slides/slider-10.jpg">
+  <div class="container">
+    <div class="carousel-caption">
+      <h1 class="wow fadeInLeftBig" data-wow-duration="2s">Travel Quoter will be the best way, <br /> to book your next holiday!</h1>
+      <p class="wow fadeInRightBig" data-wow-duration="2s">We save you time and money guaranteed!</p>
+      <div class="col-md-6">
+        <div class="banner-square call-now wow fadeInLeft" data-wow-duration="2s">
+          <div class="banner-square-overlay">
+            <h3>Call Now</h3>
+            <p>For Travel Quote</p>
+            <a href="#" data-toggle="modal" data-target="#phoneModal" class="desktop-call"><span class="fa fa-phone"></span>Call</a>
+            <a href="tel:0287290889" class="mobile-call"><span class="fa fa-phone"></span>Call</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="banner-square fill-inquiry wow fadeInRight" data-wow-duration="2s">
+          <div class="banner-square-overlay">
+            <h3>Fill Your Inquiry</h3>
+            <p>and receive Travel Agent quotes within 24 hours</p>
+            <div>
+              <form action="/questionnaire" method="GET" id="fillForm">
+                <input class="form-control" type="text" ng-model="step1.full_name.value" value="" id="name" name="name" placeholder="Enter your trip name">
+                <a href="javascript: document.getElementById('fillForm').submit();"><span class="fa fa-long-arrow-right"></span>Start</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!--/banner-->
+
+
+<div class="main-content">
+
+  <div class="cbc-wrap">
+    <h3 class="cta">Easy as 1,2,3</h3>
+    <div class="row travel-steps">
+      <div class="col-md-4 icons-steps wow fadeIn" data-wow-duration="2s">
+        <img src="{{ directory }}/images/first-step.png">
+        <h3>Fill your details</h3>
+      </div>
+      <div class="col-md-4 icons-steps wow fadeIn" data-wow-duration="2s">
+        <img src="{{ directory }}/images/second-step.png">
+        <h3>Fill your Travel needs</h3>
+      </div>
+      <div class="col-md-4 icons-steps wow fadeIn" data-wow-duration="2s">
+        <img src="{{ directory }}/images/third-step.png">
+        <h3>Send your enquiry to Travel Agents</h3>
+      </div>
+    </div>
+  </div><!--/cbc-wrap-->
+
+  <div class="map white">
+    <div class="cbc-wrap">
+      <h3 class="cta">We Have Picked Some Of The Hottest Places For You To Discover</h3>
+      <div class="mapcontainer_equi">
+        <div class="plotLegend">
+            <span>Alternative content for the legend</span>
+        </div>
+        <div class="map inner-map">
+            <span>Alternative content for the map</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cbc-wrap">
+    <h3 class="cta">More Places To Think About</h3>
+    <div class="row">
+      <div class="col-md-4 city_th wow fadeInLeftBig" data-wow-duration="1s">
+        <a href="/cities/tokyo">
+          <img src="{{ directory }}/images/city_thumbs/tokyo-thumb-7.png">
+          <h4>Tokyo</h4>
+        </a>
+      </div>
+      <div class="col-md-4 city_th wow fadeInDown" data-wow-duration="1s">
+        <a href="/cities/paris">
+          <img src="{{ directory }}/images/city_thumbs/paris-thumb-2.png">
+          <h4>Paris</h4>
+        </a>
+      </div>
+      <div class="col-md-4 city_th wow fadeInRightBig" data-wow-duration="1s">
+        <a href="/cities/hong-kong">
+          <img src="{{ directory }}/images/city_thumbs/hongkong-thumb-8.png">
+          <h4>Hong Kong</h4>
+        </a>
+      </div>
+      <div class="col-md-4 city_th wow fadeInLeft" data-wow-duration="1s">
+        <a href="/cities/moscow">
+          <img src="{{ directory }}/images/city_thumbs/moscow-thumb-4.png">
+          <h4>Moscow</h4>
+        </a>
+      </div>
+      <div class="col-md-4 city_th wow fadeInUp" data-wow-duration="1s">
+        <a href="/cities/berlin">
+          <img src="{{ directory }}/images/city_thumbs/berlin-thumb-9.png">
+          <h4>Berlin</h4>
+        </a>
+      </div>
+      <div class="col-md-4 city_th wow fadeInRight" data-wow-duration="1s">
+        <a href="/cities/belgrade">
+          <img src="{{ directory }}/images/city_thumbs/belgrade-thumb-6.png">
+          <h4>Belgrade</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div><!--/main-content-->
+
+<div class="modal fade" id="phoneModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">You can reach us using the phone number below:</h4>
+      </div>
+      <div class="modal-body">
+        <p>02 8729 0889</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div><!--/modal-->
+
+{% include directory ~ '/partials/footer.html.twig' %}

@@ -1,0 +1,20 @@
+name: Tripogater
+description: Drupal 8 Theme
+type: theme
+core: 8.x
+libraries:
+  - tripogater/global-css
+  - tripogater/global-js
+  - tripogater/angular-js
+  - tripogater/fonts
+stylesheets-remove:
+  - core/themes/stable/css/views/views.module.css
+  - core/themes/stable/css/system/components/align.module.css
+
+regions:
+  content: 'Main Content'
+  header: 'Header'
+  footer: 'Footer'
+  main_navigation: 'Main Navigation'
+  footer_navigation: 'Footer Navigation'
+  social_sidebar: 'Social Sidebar'

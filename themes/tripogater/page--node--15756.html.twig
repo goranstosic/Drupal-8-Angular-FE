@@ -1,0 +1,103 @@
+{% include directory ~ '/partials/header.html.twig' %}
+<base href="/" />
+<div class="main-content questionnaire">
+
+  <div class="q-background">
+    <div class="cbc-wrap">
+      <div class="questionnaire-wrap">
+        {% verbatim %}
+
+          <main ng-app="Questionnaire" ng-controller="formCtrl" ng-cloak>
+            <form id="questionnaire-form">
+              <div class="tracker">
+                <ul>
+                  <li ng-class="{'active' : step == 1}">Contact Information</li>
+                  <li ng-class="{'active' : step == 2}">Travel Selection</li>
+                  <li ng-class="{'active' : step == 3}">Submit</li>
+                </ul>
+                <div class="clr"></div>
+              </div>
+
+        {% endverbatim %}
+
+              {% include directory ~ '/partials/questionnaire/step1.html.twig' %}
+
+        {% verbatim %}
+              <div class="step-2" ng-show="step == 2">
+                  <div class="child-tracker">
+                      <ul>
+                          <li ng-class="{'active' : quote == 'flights'}">Flights</li>
+                          <li ng-class="{'active' : quote == 'accommodation'}">Accommodation</li>
+                          <li ng-class="{'active' : quote == 'cruise'}">Cruise</li>
+                          <li ng-class="{'active' : quote == 'travel_insurance'}">Travel insurance</li>
+                          <li ng-class="{'active' : quote == 'car_hire'}">Car hire</li>
+                          <li ng-class="{'active' : quote == 'packages'}">Packages</li>
+                      </ul>
+                      <div class="clr"></div>
+                  </div>
+
+                  <div class="pagination">
+                      <button ng-click="changeStep(1)" class="previous">Previous</button>
+                      <button ng-click="changeStep(3)" class="submit">Step 3</button>
+                      <div class="clr"></div>
+                  </div>
+
+        {% endverbatim %}
+
+                  {% include directory ~ '/partials/questionnaire/step2-flights.html.twig' %}
+
+                  {% include directory ~ '/partials/questionnaire/step2-accommodation.html.twig' %}
+
+                  {% include directory ~ '/partials/questionnaire/step2-cruise.html.twig' %}
+
+                  {% include directory ~ '/partials/questionnaire/step2-travelinsurance.html.twig' %}
+
+                  {% include directory ~ '/partials/questionnaire/step2-carhire.html.twig' %}
+
+                  {% include directory ~ '/partials/questionnaire/step2-packages.html.twig' %}
+
+        {% verbatim %}
+
+                  <div class="pagination">
+                      <button ng-click="changeStep(1)" class="previous">Previous</button>
+                      <button ng-click="changeStep(3)" class="submit">Step 3</button>
+                      <div class="clr"></div>
+                  </div>
+              </div><!--/step-2-->
+
+              <div class="step-3" ng-show="step == 3">
+                <div class="thank-you-msg" ng-show="!resent">
+                  Thank you for filling out questionnaire! <br>
+
+                  <div class="search-link">
+                    <button ng-click="searchRedirect()">Search</button>
+                  </div>
+                  <div ng-show="resend" class="resend-link">
+                    <button ng-click="resendQuestionnaire()">Resend</button>
+                  </div>
+
+                </div>
+                <div class="thank-you-msg-resent" ng-show="resent">
+                    Resent successful message! <br>
+                </div>
+              </div>
+
+              <div class="step-4" ng-show="step == 4">
+                <div class="thank-you-msg">
+                  Thanks for choosing Travel Quoter, we will contact you as to your request.
+                </div>
+              </div>
+
+            </form>
+          </main>
+
+        {% endverbatim %}
+      </div>
+    </div><!--/cbc-wrap-->
+  </div><!--/q-background-->
+
+</div><!--/main-content-->
+
+
+
+{% include directory ~ '/partials/footer.html.twig' %}

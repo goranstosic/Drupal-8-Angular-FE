@@ -1,0 +1,131 @@
+{% include directory ~ '/partials/header.html.twig' %}
+
+<base href="/" />
+{% verbatim %}
+<main class="search-container" ng-app="Search" ng-controller="searchCtrl" ng-cloak>
+<div class="main-content search-page">
+
+  <div class="s-background">
+    <div class="cbc-wrap">
+      <div class="search-wrap" ng-show="success_num == 0">
+
+        <form>
+
+          <div class="form-group row">
+            <label for="search-location" class="col-md-offset-2 col-md-3 col-form-label">Enter your location</label>
+            <div class="col-md-5">
+              <!-- <input class="form-control" type="text" value="" id="search-location"> -->
+
+                <input class="form-control" list="dataList" type="text" ng-model="searchInput" ng-change="autocomplete()" value="" id="search-location">
+                <datalist ng-model="selected" id="dataList">
+                    <option ng-selected="multipleSearch()" ng-repeat="result in searchSuburbResults" value="{{result['title']}}"></option>
+                </datalist>
+
+                <!--
+                <md-autocomplete
+                    md-search-text="searchInput"
+                    md-no-cache="true"
+                    md-search-text-change="autocomplete()"
+                    md-items="item in searchSuburbResults"
+                    md-item-text="item.title"
+                    md-selected-item-change="doMultiple(item)"
+                    md-min-length="0"
+                    placeholder="Search suburbs">
+                  <md-item-template>
+                    <span md-highlight-text="searchInput" md-highlight-flags="^i">{{item.title}}</span>
+                  </md-item-template>
+                </md-autocomplete>
+                -->
+
+            </div>
+          </div>
+          <div ng-show="multipleIds.length > 0" class="form-group row">
+            <label for="search-location" class="col-md-offset-2 col-md-3 col-form-label">Selected location(s)</label>
+            <div class="col-md-5">
+              <div ng-repeat="suburb in multipleIds track by $index" class="chip">
+                {{suburb['title']}}
+                <span ng-click="deleteMultiple(suburb)" class="chip-closebtn">×</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-offset-2 col-md-3 col-form-label" for="select-radius">Search Radius</label>
+            <div class="col-md-5">
+              <select ng-init="distance = '5'" ng-model="distance" class="form-control" id="select-radius">
+                <option value="5">5 km</option>
+                <option value="10">10 km</option>
+                <option value="15">15 km</option>
+                <option value="20">20 km</option>
+                <option value="25">25 km</option>
+                <option value="1000">1000 km</option>
+                <option value="10000">10000 km</option>
+              </select>
+            </div>
+          </div>
+
+          <button ng-click="search(distance)" class="search-submit">Search</button>
+
+        </form>
+
+        <div class="search-results" ng-show="searchResults.agents_lenght > 0">
+
+          <p>There are <span>{{searchResults.agents_lenght}}</span> Travel Agents in {{distance}} km search radius from you.</p>
+          <p>Would you like to receive quotes from <span>{{selectedAgents}}</span> selected Travel Agents?</p>
+          <p>You can randomly select <input type="number" ng-model="randomlySelectNum" onkeydown="return false" name="quantity" min="1" max="{{selectedAgents}}"> Travel Agents to request quote from.</p>
+          <button ng-click="sendRequest()" class="send_quote-submit">Send Request</button>
+          <div class="checkbox">
+            <label><input id="send-email-to-myself" type="checkbox" ng-model="mailToMyself" name="send-email-to-myself">Send email to myself</label>
+          </div>
+
+          <div class="search-tree">
+            <p>You can manually select how many travel agents to get in contact with you, by selecting from the list below:</p>
+            <div class="acidjs-css3-treeview">
+                <ul ng-repeat="(countries, countries_value) in searchResults.countries track by $index">
+                    <li>
+                        <input type="checkbox" ng-model="countries_value.selected" ng-change="selectCountry(countries_value)" id="node-{{setField('countries_index', $index)}}" checked="checked" /><label><input type="checkbox" ng-model="countries_value.selected" ng-change="selectCountry(countries_value)"/><span></span></label><label for="node-{{countries_index}}">{{countries}} ({{calcCountryAgents(countries_value)}})</label>
+                        <ul ng-repeat="(states, states_value) in countries_value.states track by $index">
+                            <li>
+                                <input type="checkbox" ng-model="states_value.selected" ng-change="selectState(states_value)" id="node-{{countries_index}}-{{setField('states_index', $index)}}" checked="checked" /><label><input type="checkbox" ng-model="states_value.selected" ng-change="selectState(states_value)" /><span></span></label><label for="node-{{countries_index}}-{{states_index}}">{{states}} ({{calcStateAgents(states_value)}})</label>
+                                <ul ng-repeat="(cities, cities_value) in states_value.cities track by $index">
+                                    <li>
+                                        <input type="checkbox" ng-model="cities_value.selected" ng-change="selectCity(cities_value)" id="node-{{countries_index}}-{{states_index}}-{{setField('cities_index', $index)}}" checked="checked" /><label><input type="checkbox" ng-model="cities_value.selected" ng-change="selectCity(cities_value)" /><span></span></label><label for="node-{{countries_index}}-{{states_index}}-{{cities_index}}">{{cities}}  ({{calcCityAgents(cities_value)}})</label>
+                                        <ul ng-repeat="(regions, regions_value) in cities_value.regions track by $index">
+                                            <li>
+                                                <input type="checkbox" ng-model="regions_value.selected" ng-change="selectRegion(regions_value)" id="node-{{countries_index}}-{{states_index}}-{{cities_index}}-{{setField('regions_index', $index)}}" checked="checked" /><label><input type="checkbox" ng-model="regions_value.selected" ng-change="selectRegion(regions_value)" /><span></span></label><label for="node-{{countries_index}}-{{states_index}}-{{cities_index}}-{{regions_index}}">{{regions}} ({{calcRegionAgents(regions_value)}})</label>
+                                                <ul>
+                                                  <li ng-repeat="(suburbs, suburbs_value) in regions_value.suburbs track by $index">
+                                                    <input type="checkbox" ng-model="suburbs_value.selected" ng-change="selectSuburbAgent()" id="node-{{countries_index}}-{{states_index}}-{{regions_index}}-{{cities_index}}-{{$index}}" /><label><input type="checkbox" ng-model="suburbs_value.selected" ng-change="selectSuburbAgent()" checked="checked" /><span></span></label><label for="node-{{countries_index}}-{{states_index}}-{{regions_index}}-{{cities_index}}-{{$index}}">{{suburbs}} ({{suburbs_value.values.length}})</label>
+                                                  </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!--acidjs-css3-treeview-->
+
+          </div><!--/search-tree-->
+
+        </div><!--/search-no-results-->
+        <div class="search-no-results" ng-show="searchResults.agents_lenght == 0">
+            <p>There are no Travel Agents in that area.</p>
+        </div>
+      </div>
+     <div class="search-no-results" ng-show="success_num > 0">
+        <p>Thanks for submitting your Travel inquiry, Travel Quoter will send your request immediately. Please wait for reply within 24 hours.</p>
+        <p>Have you though of becoming a member? Would you like to know the benefits?</p>
+        {% endverbatim %}
+        <a class="btn btn-lg btn-primary" onclick="window.location.href='{{url('<front>')}}/user/login'">Become a Member</a>
+        {% verbatim %}
+     </div>
+    </div><!--/cbc-wrap-->
+  </div><!--/q-background-->
+
+</div><!--/main-content-->
+</main>
+{% endverbatim %}
+
+{% include directory ~ '/partials/footer.html.twig' %}

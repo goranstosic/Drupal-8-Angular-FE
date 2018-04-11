@@ -1,0 +1,6 @@
+name: CSV importer
+type: module
+description: "Helper module for CSV import"
+package: Other
+core: 8.x
+dependencies:

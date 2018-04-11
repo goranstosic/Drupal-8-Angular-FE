@@ -1,0 +1,47 @@
+global-css:
+  css:
+    theme:
+      css/bootstrap.min.css: {}
+      'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css': {type: external}
+      'https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css': {type: external}
+      css/md-time-picker.css: {}
+      css/carousel.css: {}
+      css/animate.css: {}
+      css/swiper.min.css: {}
+      css/custom.css: {}
+
+global-js:
+  js:
+    js/bootstrap.min.js: {}
+    'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js': {type: external}
+    'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js': {type: external}
+    'https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js': {type: external}
+    'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js': {type: external}
+    js/jquery.mapael.min.js: {}
+    js/world_countries.min.js: {}
+    js/wow.min.js: {}
+    js/swiper.min.js: {}
+    js/main.js: {}
+    //use.fontawesome.com/2356704547.js: { type: external }
+  dependencies:
+    - core/jquery
+
+angular-js:
+      version: VERSION
+      header: true
+      js:
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js':  {type: external}
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js':  {type: external}
+        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-animate.min.js':  {type: external}
+        'https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js': {type: external}
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js': {type: external}
+        js/clickoutside.directive.js: {}
+        js/md-time-picker.js: {}
+        js/qf.js: {}
+        js/search.js: {}
+
+fonts:
+  css:
+    theme:
+      '//fonts.googleapis.com/css?family=Open+Sans': {type: external, minified: true}
+      '//fonts.googleapis.com/icon?family=Material+Icons': {type: external}
